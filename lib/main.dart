@@ -130,7 +130,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
 
               const SizedBox(height: 24),
 
-              // Convert dollars to euros button
+              // Convert Dollars to euros button
               SizedBox(
                 width: double.infinity,
                 height: 50,
