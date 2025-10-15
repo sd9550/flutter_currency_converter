@@ -65,7 +65,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
     if (eurosText.isNotEmpty) {
       try {
         double euros = double.parse(eurosText);
-        double dollars = euros * 1.15; // Conversion rate
+        double dollars = euros * 1.19; // Conversion rate
         _eurosController.text = dollars.toStringAsFixed(2);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -78,6 +78,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
     }
   }
 
+  // Clear both text fields
   void _clearForm() {
     _eurosController.clear();
     _dollarsController.clear();
@@ -194,24 +195,6 @@ class _CurrencyFormState extends State<CurrencyForm> {
                 ),
               ),
 
-              /* Display entered text (for demonstration)
-              Card(
-                color: Colors.grey[100],
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Entered Data:',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      Text('Email: ${_emailController.text}'),
-                      Text('Password: ${_passwordController.text}'),
-                    ],
-                  ),
-                ),
-              ), */
             ],
           ),
         ),
