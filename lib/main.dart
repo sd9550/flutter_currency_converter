@@ -87,7 +87,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
   // Validation function for dollars
   String? _validateDollars(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter a dollar amount';
+      return 'Please enter a Dollar amount';
     }
     return null;
   }
@@ -95,7 +95,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
   // Validation function for euros
   String? _validateEuros(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter a euro amount';
+      return 'Please enter a Euro amount';
     }
     return null;
   }
