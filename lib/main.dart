@@ -100,6 +100,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
     return null;
   }
 
+  // Widget section
   @override
   Widget build(BuildContext context) {
     return Scaffold(
