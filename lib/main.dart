@@ -1,3 +1,6 @@
+// Stefan Drozdek
+// CIS 3334
+// Unit 6
 import 'package:flutter/material.dart';
 
 void main() {
