@@ -30,6 +30,9 @@ class _CurrencyFormState extends State<CurrencyForm> {
   // Controllers to manage text field values
   final TextEditingController _dollarsController = TextEditingController();
   final TextEditingController _eurosController = TextEditingController();
+  String dollarResult = '';
+  String euroResult = '';
+
 
   // Form key for validation
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -47,8 +50,11 @@ class _CurrencyFormState extends State<CurrencyForm> {
     if (dollarsText.isNotEmpty) {
       try {
         double dollars = double.parse(dollarsText);
-        double euros = dollars * 0.85; // Conversion rate
-        _dollarsController.text = euros.toStringAsFixed(2);
+        double euros = dollars * 0.86; // Conversion rate
+        //_dollarsController.text = euros.toStringAsFixed(2);
+        setState(() {
+          dollarResult = "\$${dollars.toStringAsFixed(2)} converts to €${euros.toStringAsFixed(2)}";
+        });
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -65,8 +71,11 @@ class _CurrencyFormState extends State<CurrencyForm> {
     if (eurosText.isNotEmpty) {
       try {
         double euros = double.parse(eurosText);
-        double dollars = euros * 1.19; // Conversion rate
-        _eurosController.text = dollars.toStringAsFixed(2);
+        double dollars = euros * 1.17; // Conversion rate
+        //_eurosController.text = dollars.toStringAsFixed(2);
+        setState(() {
+          euroResult = " | €${euros.toStringAsFixed(2)} converts to \$${dollars.toStringAsFixed(2)}";
+        });
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -82,6 +91,8 @@ class _CurrencyFormState extends State<CurrencyForm> {
   void _clearForm() {
     _eurosController.clear();
     _dollarsController.clear();
+    dollarResult = "";
+    euroResult = "";
   }
 
   // Validation function for dollars
@@ -106,7 +117,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Currency Converter'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
       body: Padding(
@@ -137,7 +148,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
                 child: ElevatedButton(
                   onPressed: _convertDollarsToEuros,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                   ),
                   child: const Text(
@@ -170,7 +181,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
                 child: ElevatedButton(
                   onPressed: _convertEurosToDollars,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                   ),
                   child: const Text(
@@ -189,13 +200,27 @@ class _CurrencyFormState extends State<CurrencyForm> {
                 child: OutlinedButton(
                   onPressed: _clearForm,
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blue,
+                    foregroundColor: Colors.black,
                     side: const BorderSide(color: Colors.blue),
                   ),
                   child: const Text('Clear Form'),
                 ),
               ),
 
+              const SizedBox(height: 12),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    dollarResult,
+                    style: const TextStyle(fontSize: 12),
+                  ),
+                  Text(
+                    euroResult,
+                    style: const TextStyle(fontSize: 12),
+                  )
+                ]
+              ),
             ],
           ),
         ),
