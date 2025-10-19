@@ -48,6 +48,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
     super.dispose();
   }
 
+  // Conversion functions
   void _convertDollarsToEuros() {
     String dollarsText = _dollarsController.text;
     if (dollarsText.isNotEmpty) {
@@ -77,7 +78,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
         double dollars = euros * 1.17; // Conversion rate
         //_eurosController.text = dollars.toStringAsFixed(2);
         setState(() {
-          euroResult = " | €${euros.toStringAsFixed(2)} converts to \$${dollars.toStringAsFixed(2)}";
+          euroResult = "€${euros.toStringAsFixed(2)} converts to \$${dollars.toStringAsFixed(2)}";
         });
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -94,8 +95,10 @@ class _CurrencyFormState extends State<CurrencyForm> {
   void _clearForm() {
     _eurosController.clear();
     _dollarsController.clear();
-    dollarResult = "";
-    euroResult = "";
+    setState(() {
+      dollarResult = "";
+      euroResult = "";
+    });
   }
 
   // Validation function for dollars
@@ -211,18 +214,25 @@ class _CurrencyFormState extends State<CurrencyForm> {
               ),
 
               const SizedBox(height: 12),
+
+              // Rows for displaying results
               Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     dollarResult,
                     style: const TextStyle(fontSize: 12),
-                  ),
-                  Text(
-                    euroResult,
-                    style: const TextStyle(fontSize: 12),
                   )
                 ]
+              ),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      euroResult,
+                      style: const TextStyle(fontSize: 12),
+                    )
+                  ]
               ),
             ],
           ),
