@@ -53,8 +53,9 @@ class _CurrencyFormState extends State<CurrencyForm> {
     String dollarsText = _dollarsController.text;
     if (dollarsText.isNotEmpty) {
       try {
+        double conversionRate = 0.86;
         double dollars = double.parse(dollarsText);
-        double euros = dollars * 0.86; // Conversion rate
+        double euros = dollars * conversionRate; // Conversion rate
         //_dollarsController.text = euros.toStringAsFixed(2);
         setState(() {
           dollarResult = "\$${dollars.toStringAsFixed(2)} converts to €${euros.toStringAsFixed(2)}";
@@ -74,8 +75,9 @@ class _CurrencyFormState extends State<CurrencyForm> {
     String eurosText = _eurosController.text;
     if (eurosText.isNotEmpty) {
       try {
+        double conversionRate = 1.17;
         double euros = double.parse(eurosText);
-        double dollars = euros * 1.17; // Conversion rate
+        double dollars = euros * conversionRate; // Conversion rate
         //_eurosController.text = dollars.toStringAsFixed(2);
         setState(() {
           euroResult = "€${euros.toStringAsFixed(2)} converts to \$${dollars.toStringAsFixed(2)}";
@@ -221,7 +223,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
                 children: [
                   Text(
                     dollarResult,
-                    style: const TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 14),
                   )
                 ]
               ),
@@ -230,7 +232,7 @@ class _CurrencyFormState extends State<CurrencyForm> {
                   children: [
                     Text(
                       euroResult,
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 14),
                     )
                   ]
               ),
